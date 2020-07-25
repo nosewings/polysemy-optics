@@ -17,6 +17,3 @@ and they behave a little strangely.
 * `zoomMany` cannot be sensibly implemented this way, so I have left it out.
 * Due to difficulties with higher-order effects, I have not yet found a way to
   implement the `magnify` functions.
-
-Additionally, the order of values returned by `glistening` and `glistenings` is
-swapped, in accordance with Polysemy's convention.

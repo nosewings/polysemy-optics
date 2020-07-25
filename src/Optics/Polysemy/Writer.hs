@@ -13,14 +13,14 @@ import qualified Optics
 import Polysemy
 import Polysemy.Writer
 
-glistening :: (ViewableOptic k r, Member (Writer s) effs) => Optic' k is s r -> Sem effs a -> Sem effs (ViewResult k r, a)
+glistening :: (ViewableOptic k r, Member (Writer s) effs) => Optic' k is s r -> Sem effs a -> Sem effs (a, ViewResult k r)
 glistening o m = do
   (s, a) <- listen m
-  return (Optics.gview o s, a)
+  return (a, Optics.gview o s)
 {-# INLINE glistening #-}
 
-glistenings :: (ViewableOptic k r, Member (Writer s) effs) => Optic' k is s a -> (a -> r) -> Sem effs b -> Sem effs (ViewResult k r, b) 
+glistenings :: (ViewableOptic k r, Member (Writer s) effs) => Optic' k is s a -> (a -> r) -> Sem effs b -> Sem effs (b, ViewResult k r)
 glistenings o f m = do
   (s, b) <- listen m
-  return (Optics.gviews o f s, b)
+  return (b, Optics.gviews o f s)
 {-# INLINE glistenings #-}

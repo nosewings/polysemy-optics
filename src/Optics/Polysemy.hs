@@ -7,8 +7,8 @@ module Optics.Polysemy
   ) where
 
 import Optics hiding
-  ( Zoom(..)
-  , Magnify(..)
+  ( Magnify(..)
+  , Zoom(..)
   , assign
   , assign'
   , glistening
@@ -24,17 +24,8 @@ import Optics hiding
   , zoom
   , zoomMaybe
   )
-import Optics.State.Operators hiding
-  ( (.=)
-  , (?=)
-  , (%=)
-  , (%%=)
-  , (<.=)
-  , (<?=)
-  , (<%=)
-  , (<<.=)
-  , (<<?=)
-  , (<<%=)
+import Optics.State.Operators
+  ( PermeableOptic(..)
   )
 
 import Optics.Polysemy.Reader

@@ -129,9 +129,6 @@ guses :: (ViewableOptic k r, Member (State s) effs) => Optic' k is s a -> (a -> 
 guses o f = absorbState (Optics.guses o f)
 {-# INLINE guses #-}
 
--- | Zoom into a structure using a lens. The original structure is still
--- visible; writes to the substructure will be visible in the superstructure,
--- and vice-versa.
 zoom :: (Is k A_Lens, Member (State s) effs) => Optic' k is s a -> Sem (State a ': effs) c -> Sem effs c
 zoom o = interpret \case
   Get   -> use o'
@@ -139,9 +136,6 @@ zoom o = interpret \case
   where o' = castOptic @A_Lens o
 {-# INLINE zoom #-}
 
--- | Zoom into a structure using an affine traversal. The original structure is
--- still visible; writes to the substructure will be visible in the
--- superstructure, and vice-versa.
 zoomMaybe :: (Is k An_AffineTraversal, Member (State s) effs) => Optic' k is s a -> Sem (State a ': effs) c -> Sem effs (Maybe c)
 zoomMaybe o m = preuse o' >>= traverse \a ->
   ( interpret \case

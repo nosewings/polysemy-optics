@@ -1,5 +1,5 @@
-# Revision history for polysemy-optics
+# Changelog for polysemy-optics
 
-## 0.1.0.0 -- YYYY-mm-dd
+## 0.1.0.0 -- 2020-07-25
 
-* First version. Released on an unsuspecting world.
+* Initial release.
