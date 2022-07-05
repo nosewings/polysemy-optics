@@ -10,7 +10,7 @@ license:               BSD2
 license-file:          LICENSE
 author:                Nicholas Coltharp
 maintainer:            coltharp@pdx.edu
-copyright:             2020 Nicholas Coltharp
+copyright:             2022 Nicholas Coltharp
 category:              Optics, Lenses
 build-type:            Simple
 extra-source-files:    CHANGELOG.md
