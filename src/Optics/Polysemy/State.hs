@@ -23,6 +23,10 @@ module Optics.Polysemy.State
   , zoomMaybe
   ) where
 
+import Data.Maybe
+  ( fromMaybe
+  )
+
 import Optics
   ( A_Getter
   , A_Lens
@@ -138,9 +142,9 @@ zoom o = interpret \case
 
 zoomMaybe :: (Is k An_AffineTraversal, Member (State s) effs) => Optic' k is s a -> Sem (State a ': effs) c -> Sem effs (Maybe c)
 zoomMaybe o m = preuse o' >>= traverse \a ->
-  ( interpret \case
-      Get    -> maybe a id <$> preuse o'
+  interpret \case
+      Get    -> fromMaybe a <$> preuse o'
       Put a' -> assign o' a'
-  ) m
+  m
   where o' = castOptic @An_AffineTraversal o
 {-# INLINE zoomMaybe #-}
